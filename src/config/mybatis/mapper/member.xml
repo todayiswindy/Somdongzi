@@ -11,6 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 		select * from member where mem_id=#{mem_id}
 	</select>
 	
+	<select id="member_careAdmin" parameterType="java.lang.String" resultType="member">
+		select * from member where mem_careAdmin != 'X' and mem_isAdmin='n'
+	</select>
+	
 	<insert id="member_insert" parameterType="member">
 		insert into member values(
 			seq_member_idx.nextVal,
@@ -20,10 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 			#{mem_phone},
 			#{mem_email},
 			SYSDATE,
-			#{mem_membership},
-			#{mem_passCat},
-			#{mem_passDog},
-			null, null, 0, 0
+			DEFAULT, DEFAULT, DEFAULT, null, null, DEFAULT, DEFAULT, #{mem_careAdmin}, DEFAULT, null
 			)
 	</insert>
 	
@@ -60,6 +61,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 	<update id="member_update_passDog" parameterType="member">
 		update member
 		set mem_passDog=#{inputStr}
+		where mem_id=#{mem_id}
+	</update>
+	
+	<update id="member_careadmin_update" parameterType="member">
+		update member
+		set mem_careAdmin=#{inputStr}
+		where mem_id=#{mem_id}
+	</update>
+	
+	<update id="member_isadmin_update" parameterType="member">
+		update member
+		set mem_isAdmin=#{inputStr}
 		where mem_id=#{mem_id}
 	</update>
 

@@ -25,12 +25,12 @@
 				var json = eval( data );
 				
 				if( json[0].result == '0' ){
-					alert("회원 삭제 실패" );
+					alert("처리 실패하였습니다." );
 				}
 				else{
-					alert("회원 삭제 성공");
+					alert("성공적으로 처리되었습니다.");
 				}
-				location.href="/member/list";
+				location.href="/adminonly";
 			}
 		}
 		
@@ -55,10 +55,10 @@
 				var json = eval( data );
 				
 				if( json[0].result == '0' ){
-					alert("회원정보 업데이트 실패" );
+					alert("처리 실패하였습니다." );
 				}
 				else{
-					alert("회원정보 업데이트 성공");
+					alert("성공적으로 처리되었습니다.");
 				}
 				
 				location.href="/adminonly";

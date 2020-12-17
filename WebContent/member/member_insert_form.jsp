@@ -8,14 +8,16 @@
 	<script src="../js/httpRequest.js"></script>
 	<script>
 		var b_idCheck = false;
-	
+		
 		function send( f ){
+			console.log("send!");
 			var id = f.id.value.trim();
 			var pwd = f.pwd.value.trim();
 			var name = f.name.value.trim();
 			var phone = f.phone.value.trim();
 			var email = f.email.value.trim();
 			var careAdmin = f.careAdmin.value.trim();
+			console.log(careAdmin);
 			
 			//유효성 체크
 			if( !b_idCheck ){
@@ -63,44 +65,17 @@
 				b_idCheck = true;
 			}
 		}//resultFn()
-		
-		function addElement() {
-			var aInput=document.getElementById('myspan').getElementsByTagName('input');
-			for(var i=0; i<aInput.length; i++) {
-			    aInput[i].onclick=new Function('addDelete(this)');
-			    }
+
+		function isChecked() {
+			document.getElementById('check_view_box').style.display='block';
 		}
-		function addDelete(obj) {
-			var parentSpan=document.getElementById('myspan');
-			if(obj.nextSibling.nodeName!='INPUT') { // add
-			    var oInputText=document.createElement('input');
-			    oInputText.setAttribute('type', 'text');
-			    oInputText.setAttribute('name', 'careAdmin');
-			    parentSpan.insertBefore(oInputText, obj.nextSibling);
-		    }
-			else { // delete
-			    parentSpan.removeChild(obj.nextSibling);
-		    }
-		}
-		// Multiple onload function created by: Simon Willison
-		// http://simonwillison.net/2004/May/26/addLoadEvent/
-		function addLoadEvent(func) {
-			  var oldonload = window.onload;
-			  if (typeof window.onload != 'function') {
-			    window.onload = func;
-			  } else {
-			    window.onload = function() {
-			      if (oldonload) {
-			        oldonload();
-			      }
-			      func();
-			    }
-			  }
-		}
-		addLoadEvent(function() {
-		  addElement();
-		});
 	</script>
+	
+	<style>
+	#inputCare {
+		width: 300px;
+	}
+	</style>
 </head>
 
 <body>
@@ -121,10 +96,10 @@
 				<input name="phone"><br>
 				이메일<br>
 				<input name="email"><br><br>
-				보호소 관리자입니다<br>
-				<span id="myspan">
-					<input type="checkbox">
-				</span><br>
+				보호소 관리자입니다
+				<input id="yes" type="checkbox" onclick="isChecked();" value=1><br>
+				<input type="text" id="check_view_box" name="careAdmin" style="width:300px; display:none;" placeholder="보호소명을 정확히 입력해주세요" /><br><br>
+				
 				<input type="button" value="가입" onclick="send( this.form );">
 				<input type="reset" value="취소" onclick="location.href='/member/list'">
 			</form>

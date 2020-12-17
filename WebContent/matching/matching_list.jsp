@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="../js/httpRequest.js"></script>
 	<script>
 		function del(f) {
-			if(confirm("해당 신청내역을 삭제하시겠습니까?")==false){
+			if(confirm("해당 신청을 거부하시겠습니까?")==false){
 				return;
 			}
 			var mat_id = f.mat_id.value.trim();
@@ -28,26 +28,25 @@
 				var json = eval( data );
 				
 				if( json[0].result == '0' ){
-					alert("삭제 실패" );
+					alert("처리 실패하였습니다." );
 				}
 				else{
-					alert("삭제 성공");
+					alert("성공적으로 처리되었습니다.");
 				}
 				location.href="/adminonly";
 			}
 		}
 		
 		function update(f) {
-			if(confirm("회원정보를 수정하시겠습니까?")==false){
+			if(confirm("해당 신청을 승인 하시겠습니까?")==false){
 				return;
 			}
 			
-			var updateCode = f.updateCode.value.trim();
 			var mem_id = f.mem_id.value.trim();
-			var mem_membership = f.mem_membership.value.trim();
+			var mat_id = f.mat_id.value.trim();
 			
-			var url = "/member/update";
-			var param = "updateCode=" + updateCode + "&mem_id=" + mem_id + "&mem_membership=" + mem_membership;
+			var url = "/matching/update";
+			var param = "mem_id=" + mem_id + "&mat_id=" + mat_id;
 			
 			sendRequest(url,param,updateResultFn,"POST");
 		}
@@ -58,10 +57,10 @@
 				var json = eval( data );
 				
 				if( json[0].result == '0' ){
-					alert("회원정보 업데이트 실패" );
+					alert("처리 실패하였습니다." );
 				}
 				else{
-					alert("회원정보 업데이트 성공");
+					alert("성공적으로 처리되었습니다.");
 				}
 				
 				location.href="/adminonly";
@@ -110,6 +109,7 @@
 					<th scope="cols">보호소명</th>
 					<th scope="cols">신청날짜</th>
 					<th scope="cols">상태</th>
+					<th scope="cols">..</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -119,13 +119,14 @@
 						<td>${ vo.mat_id }</td>
 						<td>${ vo.mat_careName }</td>
 						<td>${ vo.mat_date }</td>
+						<td>${ vo.mat_state }</td>
 						<td>
 							<form>
 								<input type="hidden" name="mat_id" value="${vo.mat_id }">
 								<input type="hidden" name="mem_id" value="${vo.mem_id }">
 								<input type="hidden" name="updateCode" value="manager">
 								<input type="button" value="승인" onclick="update(this.form);">
-								<input type="button" value="삭제" onclick="del(this.form);">
+								<input type="button" value="거절" onclick="del(this.form);">
 							</form>
 						</td>
 					</tr>

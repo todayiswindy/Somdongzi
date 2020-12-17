@@ -16,13 +16,15 @@ public class MemberVO implements Serializable {
 	private String	mem_catFailDate;	// 고양이 시험 탈락일
 	private String	mem_dogFailDate;	// 강아지 시험 탈락일
 	private String	inputStr;			// 멤버십 변경시 사용
-	private String	mem_careAdmin;		// 보호소 관리자 구별용
+	private String	mem_careAdmin;		// 보호소명
+	private String	mem_isAdmin;		// 보호소 관리자 여부
+	private String	mat_id;				// 입양 완료된 동물
 	
 	public MemberVO() {
 		super();
 	}
 	
-	// 회원등급만 변경시 사용
+	// 회원등급만 변경시, 보호소 관리자 승인 거부시 사용
 	public MemberVO(String mem_id, String inputStr) {
 		super();
 		this.mem_id = mem_id;
@@ -40,7 +42,7 @@ public class MemberVO implements Serializable {
 
 	// 회원가입시 사용
 	public MemberVO(int mem_idx, String mem_name, String mem_id, String mem_pwd, String mem_phone, String mem_email,
-			String mem_membership, String mem_passCat, String mem_passDog) {
+			String mem_careAdmin) {
 		super();
 		this.mem_idx = mem_idx;
 		this.mem_name = mem_name;
@@ -48,9 +50,7 @@ public class MemberVO implements Serializable {
 		this.mem_pwd = mem_pwd;
 		this.mem_phone = mem_phone;
 		this.mem_email = mem_email;
-		this.mem_membership = mem_membership;
-		this.mem_passCat = mem_passCat;
-		this.mem_passDog = mem_passDog;
+		this.mem_careAdmin = mem_careAdmin;
 	}
 	
 	public String getMem_name() {

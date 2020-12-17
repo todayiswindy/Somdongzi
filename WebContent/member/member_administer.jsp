@@ -30,6 +30,9 @@
 				if(tab_id == "tab-2") {
 					$("#tab-2").load("/matching/list");
 				}
+				if(tab_id == "tab-3") {
+					$("#tab-3").load("/admin/list");
+				}
 			})
 		});
 	</script>
