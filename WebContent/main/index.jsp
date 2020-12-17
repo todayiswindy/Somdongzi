@@ -62,12 +62,13 @@
         text-anchor: middle;
       }
     </style>
+    
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<c:url value='/resources/css/blog.css' />" rel="stylesheet">
-
 </head>
+
 <body>
 	<header class="blog-header py-3">
 		<div class="row flex-nowrap justify-content-between align-items-center">
@@ -88,8 +89,9 @@
 					<a class="btn btn-sm btn-outline-secondary" href="<c:url value='/member/logout' />">로그아웃</a>
 					<a class="btn btn-sm btn-outline-secondary" href="<c:url value='/member/mypage' />">마이페이지</a>
 					<c:if test="${ sessionScope.mem_id == 'admin' }">
-						<a class="btn btn-sm btn-outline-secondary" href="<c:url value='/member/list' />">회원관리</a>
-						<a class="btn btn-sm btn-outline-secondary" href="<c:url value='/matching/list' />">입양신청관리</a>
+						<!-- <a class="btn btn-sm btn-outline-secondary" href="<c:url value='/member/list' />">회원관리</a>
+						<a class="btn btn-sm btn-outline-secondary" href="<c:url value='/matching/list' />">입양신청관리</a>-->
+						<a class="btn btn-sm btn-outline-secondary" href="<c:url value='/adminonly' />">관리</a>
 					</c:if>
 				</c:if>
 			</div>

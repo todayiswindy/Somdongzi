@@ -21,10 +21,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 			#{mat_careName},
 			#{mat_careAddress},
 			#{mat_tel},
-			#{mem_id})
+			#{mem_id},
+			SYSDATE
+			)
 	</insert>
 	
-	<delete id="matching_delete" parameterType="string">
+	<delete id="matching_delete" parameterType="matching">
+		delete from matching where mat_id=#{mat_id} and mem_id=#{mem_id}
 	</delete>
 
 </mapper>

@@ -62,15 +62,15 @@ public class MatchingDAO {
 //		return vo;
 //	}
 //	
-//	public int delete(String mem_id) {
-//		int res = 0;
-//		
-//		SqlSession sqlSession = factory.openSession();
-//		res=sqlSession.delete("matching.matching_delete", mem_id);
-//		
-//		sqlSession.commit();
-//		sqlSession.close();
-//		
-//		return res;
-//	}
+	public int delete(MatchingVO vo) {
+		int res = 0;
+		
+		SqlSession sqlSession = factory.openSession();
+		res=sqlSession.delete("matching.matching_delete", vo);
+		
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return res;
+	}
 }

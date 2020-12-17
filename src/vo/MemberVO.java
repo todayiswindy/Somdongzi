@@ -9,21 +9,27 @@ public class MemberVO implements Serializable {
 	private String	mem_pwd;
 	private String	mem_phone;
 	private String	mem_email;
+	private String	mem_regDate;		// 가입일
 	private String	mem_membership;
-	private String mem_passCat;
-	private String mem_passDog;
-	private String inputStr;
+	private String	mem_passCat;		// 고양이 시험 통과 여부
+	private String	mem_passDog;		// 강아지 시험 통과 여부
+	private String	mem_catFailDate;	// 고양이 시험 탈락일
+	private String	mem_dogFailDate;	// 강아지 시험 탈락일
+	private String	inputStr;			// 멤버십 변경시 사용
+	private String	mem_careAdmin;		// 보호소 관리자 구별용
 	
 	public MemberVO() {
 		super();
 	}
 	
+	// 회원등급만 변경시 사용
 	public MemberVO(String mem_id, String inputStr) {
 		super();
 		this.mem_id = mem_id;
 		this.inputStr = inputStr;
 	}
 
+	// 마이페이지에서 정보 수정시 사용
 	public MemberVO(String mem_id, String mem_pwd, String mem_phone, String mem_email) {
 		super();
 		this.mem_id = mem_id;
@@ -32,18 +38,7 @@ public class MemberVO implements Serializable {
 		this.mem_email = mem_email;
 	}
 
-	public MemberVO(int mem_idx, String mem_name, String mem_id, String mem_pwd, String mem_phone, String mem_email,
-			String mem_membership) {
-		super();
-		this.mem_idx = mem_idx;
-		this.mem_name = mem_name;
-		this.mem_id = mem_id;
-		this.mem_pwd = mem_pwd;
-		this.mem_phone = mem_phone;
-		this.mem_email = mem_email;
-		this.mem_membership = mem_membership;
-	}
-
+	// 회원가입시 사용
 	public MemberVO(int mem_idx, String mem_name, String mem_id, String mem_pwd, String mem_phone, String mem_email,
 			String mem_membership, String mem_passCat, String mem_passDog) {
 		super();
@@ -57,7 +52,7 @@ public class MemberVO implements Serializable {
 		this.mem_passCat = mem_passCat;
 		this.mem_passDog = mem_passDog;
 	}
-
+	
 	public String getMem_name() {
 		return mem_name;
 	}
@@ -136,5 +131,37 @@ public class MemberVO implements Serializable {
 
 	public void setInputStr(String inputStr) {
 		this.inputStr = inputStr;
+	}
+
+	public String getMem_regDate() {
+		return mem_regDate;
+	}
+
+	public void setMem_regDate(String mem_regDate) {
+		this.mem_regDate = mem_regDate;
+	}
+
+	public String getMem_catFailDate() {
+		return mem_catFailDate;
+	}
+
+	public void setMem_catFailDate(String mem_catFailDate) {
+		this.mem_catFailDate = mem_catFailDate;
+	}
+
+	public String getMem_dogFailDate() {
+		return mem_dogFailDate;
+	}
+
+	public void setMem_dogFailDate(String mem_dogFailDate) {
+		this.mem_dogFailDate = mem_dogFailDate;
+	}
+
+	public String getMem_careAdmin() {
+		return mem_careAdmin;
+	}
+
+	public void setMem_careAdmin(String mem_careAdmin) {
+		this.mem_careAdmin = mem_careAdmin;
 	}
 }

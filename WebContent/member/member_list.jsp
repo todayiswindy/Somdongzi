@@ -4,7 +4,6 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	
 	<title>회원 목록 페이지</title>
 	
 	<script>
@@ -62,55 +61,86 @@
 					alert("회원정보 업데이트 성공");
 				}
 				
-				location.href="/member/list";
+				location.href="/adminonly";
 			}
 		}
 	</script>
-	
 	<script type="text/javascript" src="../js/httpRequest.js"></script>
+	<style>
+		table{
+			width: 100%;
+		}
+		table.type09 {
+			border-collapse: collapse;
+			text-align: left;
+			line-height: 1.5;
+		}
+		table.type09 thead th {
+			padding: 10px;
+			font-weight: bold;
+			vertical-align: top;
+			color: #369;
+			border-bottom: 3px solid #036;
+		}
+		table.type09 tbody th {
+			padding: 10px;
+			font-weight: bold;
+			vertical-align: top;
+			border-bottom: 1px solid #ccc;
+			background: #f3f6f7;
+		}
+		table.type09 td {
+			padding: 10px;
+			vertical-align: top;
+			border-bottom: 1px solid #ccc;
+		}
+	</style>
 </head>
 	
 <body>
-	<jsp:include page="/main/index.jsp"/>
-	
 	<div class="container">
 		<div id="l-margin">
-			<br><p id="test-toptext-p" class="text-center"> 회원목록 </p>
-			<table border="1">
-				<tr>
-					<th>이름</th>
-					<th>아이디</th>
-					<th>비밀번호</th>
-					<th>전화번호</th>
-					<th>이메일</th>
-					<th>회원등급</th>
-					<th></th>
-				</tr>
-				<c:forEach var="vo" items="${ list }">
+			<br><p id="test-toptext-p" class="text-center"></p>
+			<table class="type09">
+				<thead>
 					<tr>
-						<td>${ vo.mem_name }</td>
-						<td>${ vo.mem_id }</td>
-						<td>${ vo.mem_pwd }</td>
-						<td>${ vo.mem_phone }</td>
-						<td>${ vo.mem_email }</td>
-						<td><!-- 관리자가 회원등급 직접 바꿔줄 수 있음 -->
-							<form>
-								<select name="mem_membership">
-									<option value="" selected disabled hidden>${ vo.mem_membership }</option>
-								  	<option value="준회원">준회원</option>
-								  	<option value="예비집사">예비집사</option>
-								  	<option value="예비견주">예비견주</option>
-								  	<option value="댕냥마스터">댕냥마스터</option>
-								</select>
-								
-								<input type="hidden" name="mem_id" value="${vo.mem_id }">
-								<input type="hidden" name="updateCode" value="manager">
-								<input type="button" value="회원정보 수정" onclick="update(this.form);">
-								<input type="button" value="회원 삭제" onclick="del('${vo.mem_id}');">
-							</form>
-						</td>
+						<th scope="cols">이름</th>
+						<th scope="cols">아이디</th>
+						<th scope="cols">비밀번호</th>
+						<th scope="cols">전화번호</th>
+						<th scope="cols">이메일</th>
+						<th scope="cols">가입일</th>
+						<th scope="cols">회원등급</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach var="vo" items="${ list }">
+						<tr>
+							<td>${ vo.mem_name }</td>
+							<td>${ vo.mem_id }</td>
+							<td>${ vo.mem_pwd }</td>
+							<td>${ vo.mem_phone }</td>
+							<td>${ vo.mem_email }</td>
+							<td>${ vo.mem_regDate }</td>
+							<td><!-- 관리자가 회원등급 직접 바꿔줄 수 있음 -->
+								<form>
+									<select name="mem_membership">
+										<option value="" selected disabled hidden>${ vo.mem_membership }</option>
+									  	<option value="준회원">준회원</option>
+									  	<option value="예비집사">예비집사</option>
+									  	<option value="예비견주">예비견주</option>
+									  	<option value="댕냥마스터">댕냥마스터</option>
+									  	<option value="보호소관리자">보호소관리자</option>
+									</select>
+									<input type="hidden" name="mem_id" value="${vo.mem_id }">
+									<input type="hidden" name="updateCode" value="manager">
+									<input type="button" value="수정" onclick="update(this.form);">
+									<input type="button" value="삭제" onclick="del('${vo.mem_id}');">
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>
